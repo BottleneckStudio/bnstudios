@@ -64,7 +64,7 @@ describe('Logger Creation', () => {
   });
 
   it('should not throw when calling logging methods', () => {
-    const logger = createLogger({ prettyPrint: true });
+    const logger = createLogger({ prettyPrint: false });
 
     expect(() => logger.trace('trace msg')).not.toThrow();
     expect(() => logger.debug('debug msg')).not.toThrow();
