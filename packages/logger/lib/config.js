@@ -2,8 +2,14 @@
 
 const { normalizeLevels } = require('./levels');
 
-const DEFAULTS = {}
+const DEFAULTS = Object.freeze({
+  serviceName: 'app',
+  level: 'info',
+  logFile: Object.freeze({
+    enabled: false
+  })
+})
 
-module.exports = {
+module.exports = Object.freeze({
   DEFAULTS
-}
+})
