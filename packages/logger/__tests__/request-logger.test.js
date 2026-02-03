@@ -64,17 +64,78 @@ describe('Request Logging', () => {
   });
 
   it('should attach child logger to request', () => {
+    const logger = createMockLogger();
+    const middleware = requestLogger(logger);
+    const req = createMockReq();
+    const res = createMockRes();
+    const next = jest.fn();
+
+    middleware(req, res, next);
+
+    expect(logger.child).toHaveBeenCalledWith(
+      expect.objectContaining({ requestId: expect.any(String) })
+    );
+    expect(req.logger).toBe(logger._childLogger);
   });
 
   it('should attach requestId to request', () => {
+    const logger = createMockLogger();
+    const middleware = requestLogger(logger);
+    const req = createMockReq();
+    const res = createMockRes();
+    const next = jest.fn();
+
+    middleware(req, res, next);
+
+    expect(typeof req.requestId).toBe('string');
+    expect(req.requestId.length).toBeGreaterThan(0);
   });
 
   it('should call next()', () => {
+    const logger = createMockLogger();
+    const middleware = requestLogger(logger);
+    const req = createMockReq();
+    const res = createMockRes();
+    const next = jest.fn();
+
+    middleware(req, res, next);
+
+    expect(next).toHaveBeenCalledTimes(1);
   });
 
   it('should log on response finish', () => {
+    const logger = createMockLogger();
+    const middleware = requestLogger(logger);
+    const req = createMockReq();
+    const res = createMockRes();
+    const next = jest.fn();
+
+    middleware(req, res, next);
+    res._emit('finish');
+
+    expect(logger._childLogger.info).toHaveBeenCalledWith(
+      expect.objectContaining({
+        method: 'GET',
+        path: '/api/users',
+        statusCode: 200,
+        duration: expect.any(Number)
+      }),
+      'request completed'
+    );
   });
 
   it('should generate unique requestIds per request', () => {
+    const logger = createMockLogger();
+    const middleware = requestLogger(logger);
+    const req1 = createMockReq();
+    const req2 = createMockReq();
+    const res1 = createMockRes();
+    const res2 = createMockRes();
+    const next = jest.fn();
+
+    middleware(req1, res1, next);
+    middleware(req2, res2, next);
+
+    expect(req1.requestId).not.toBe(req2.requestId);
   });
 });
