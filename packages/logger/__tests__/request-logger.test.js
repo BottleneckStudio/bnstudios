@@ -1,5 +1,7 @@
 'use strict';
 
+const { requestLogger } = require('../lib/request-logger');
+
 function createMockLogger() {
   const childLogger = {
     info: jest.fn(),
