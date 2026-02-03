@@ -13,15 +13,17 @@ jest.mock('pino-pretty', () => {
   return jest.fn(() => ({ write: jest.fn() }));
 });
 
+const { createStream } = require('../lib/streams');
+
 describe('Create Logfile or Streams', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it('should return stdout destination by default', () => {
-    createStream(); ????
+    createStream();
 
-      expect(pino.destination).toHaveBeenCalledWith(1);
+    expect(pino.destination).toHaveBeenCalledWith(1);
   });
 
   it('should return stdout destination when logFile is not enabled', () => {
