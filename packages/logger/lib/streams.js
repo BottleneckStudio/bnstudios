@@ -22,6 +22,16 @@ module.exports = Object.freeze({
       });
     }
 
+    if (prettyPrint) {
+      const pretty = require('pino-pretty');
+
+      return pretty({
+        colorize: true,
+        translateTime: 'SYS:standard',
+        ignore: 'pid,hostname'
+      });
+    }
+
     // by default, write to stdout
     return pino.destination(1);
   }
