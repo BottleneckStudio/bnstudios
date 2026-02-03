@@ -50,9 +50,17 @@ describe('Request Logging', () => {
   });
 
   it('should throw when logger lacks child method', () => {
+    expect(() => requestLogger({ info: jest.fn() })).toThrow(
+      'A logger instance with a child() method is required'
+    );
   });
 
   it('should return a middleware function', () => {
+    const logger = createMockLogger();
+    const middleware = requestLogger(logger);
+
+    expect(typeof middleware).toBe('function');
+    expect(middleware.length).toBe(3);
   });
 
   it('should attach child logger to request', () => {
