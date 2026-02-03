@@ -1,0 +1,23 @@
+{
+  "name": "bottleneckstudios",
+  "version": "1.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest --projects packages/*/jest.config.js",
+    "test:coverage": "jest --projects packages/*/jest.config.js --coverage",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.29.8",
+    "jest": "30.2.0"
+  }
+}
