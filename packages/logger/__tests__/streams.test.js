@@ -27,11 +27,25 @@ describe('Create Logfile or Streams', () => {
   });
 
   it('should return stdout destination when logFile is not enabled', () => {
+    createStream({
+      logFile: {
+        enabled: false
+      }
+    });
 
+    expect(pino.destination).toHaveBeenCalledWith(1);
   });
 
   it('should return pretty print stream when prettyPrint is true', () => {
+    const pretty = require('pino-pretty');
 
+    createStream({ prettyPrint: true });
+
+    expect(pretty).toHaveBeenCalledWith({
+      colorize: true,
+      translateTime: 'SYS:standard',
+      ignore: 'pid,hostname'
+    });
   });
 
   it('should return file destination when logFile is enabled', () => {
