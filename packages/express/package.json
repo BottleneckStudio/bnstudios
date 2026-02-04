@@ -1,6 +1,9 @@
 {
   "name": "@bnstudios/express",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Express.js wrapper with sane middleware defaults",
   "keywords": [
     "express",
@@ -36,7 +39,7 @@
     "prepublishOnly": "npm test"
   },
   "dependencies": {
-    "@bnstudios/logger": "^1.0.0",
+    "@bnstudios/logger": "^1.1.0",
     "compression": "1.8.1",
     "cors": "2.8.6",
     "express": "5.2.1",
