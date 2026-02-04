@@ -2,9 +2,6 @@
   "name": "bottleneckstudios",
   "version": "1.0.0",
   "license": "MIT",
-  "engines": {
-    "node": ">=20"
-  },
   "workspaces": [
     "packages/*"
   ],
@@ -14,10 +11,16 @@
     "test:coverage": "jest --projects packages/*/jest.config.js --coverage",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "devDependencies": {
     "@changesets/cli": "2.29.8",
-    "jest": "30.2.0"
+    "jest": "30.2.0",
+    "oxfmt": "0.28.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

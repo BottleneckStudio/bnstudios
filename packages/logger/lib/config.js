@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const { normalizeLevel } = require('./levels');
+const { normalizeLevel } = require("./levels");
 
 const DEFAULTS = Object.freeze({
-  serviceName: 'app',
-  level: 'info',
+  serviceName: "app",
+  level: "info",
   logFile: Object.freeze({
-    enabled: false
-  })
+    enabled: false,
+  }),
 });
 
 module.exports = Object.freeze({
@@ -18,27 +18,25 @@ module.exports = Object.freeze({
       ...options,
       logFile: {
         ...DEFAULTS.logFile,
-        ...(options.logFile || {})
-      }
+        ...(options.logFile || {}),
+      },
     };
 
     const level = normalizeLevel(merged.level);
 
-    if (typeof merged.serviceName !== 'string' || merged.serviceName.trim() === '') {
-      throw new Error('serviceName must be a non-empty string');
+    if (typeof merged.serviceName !== "string" || merged.serviceName.trim() === "") {
+      throw new Error("serviceName must be a non-empty string");
     }
 
     if (merged.logFile.enabled && !merged.logFile.destination) {
-      throw new Error('logFile.destination is required when logFile.enabled is true');
+      throw new Error("logFile.destination is required when logFile.enabled is true");
     }
 
     return Object.freeze({
       serviceName: merged.serviceName.trim(),
       level,
       logFile: Object.freeze({ ...merged.logFile }),
-      prettyPrint: merged.prettyPrint !== undefined
-        ? merged.prettyPrint
-        : process.stdout.isTTY
+      prettyPrint: merged.prettyPrint !== undefined ? merged.prettyPrint : process.stdout.isTTY,
     });
-  }
-})
+  },
+});

@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const fs = require('node:fs');
-const path = require('node:path');
-const pino = require('pino');
+const fs = require("node:fs");
+const path = require("node:path");
+const pino = require("pino");
 
 module.exports = Object.freeze({
   createStream: (options = {}) => {
@@ -23,16 +23,16 @@ module.exports = Object.freeze({
     }
 
     if (prettyPrint) {
-      const pretty = require('pino-pretty');
+      const pretty = require("pino-pretty");
 
       return pretty({
         colorize: true,
-        translateTime: 'SYS:standard',
-        ignore: 'pid,hostname'
+        translateTime: "SYS:standard",
+        ignore: "pid,hostname",
       });
     }
 
     // by default, write to stdout
     return pino.destination(1);
-  }
+  },
 });

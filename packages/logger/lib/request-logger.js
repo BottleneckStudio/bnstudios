@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const crypto = require('node:crypto');
+const crypto = require("node:crypto");
 
 module.exports = Object.freeze({
   requestLogger: (logger) => {
-    if (!logger || typeof logger.child !== 'function') {
-      throw new Error('A logger instance with a child() method is required')
+    if (!logger || typeof logger.child !== "function") {
+      throw new Error("A logger instance with a child() method is required");
     }
 
     return (req, res, next) => {
@@ -16,17 +16,20 @@ module.exports = Object.freeze({
       req.logger = childLogger;
       req.requestId = requestId;
 
-      res.on('finish', () => {
+      res.on("finish", () => {
         const duration = Date.now() - start;
-        childLogger.info({
-          method: req.method,
-          path: req.path,
-          statusCode: res.statusCode,
-          duration
-        }, 'request completed');
+        childLogger.info(
+          {
+            method: req.method,
+            path: req.path,
+            statusCode: res.statusCode,
+            duration,
+          },
+          "request completed",
+        );
       });
 
       return next();
-    }
-  }
+    };
+  },
 });

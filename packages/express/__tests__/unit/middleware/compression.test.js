@@ -1,25 +1,25 @@
-'use strict'
+"use strict";
 
-jest.mock('compression', () => jest.fn(() => 'compression-middleware'))
+jest.mock("compression", () => jest.fn(() => "compression-middleware"));
 
-const compressionFactory = require('../../../lib/middleware/compression')
-const compression = require('compression')
+const compressionFactory = require("../../../lib/middleware/compression");
+const compression = require("compression");
 
-describe('middleware/compression', () => {
+describe("middleware/compression", () => {
   afterEach(() => {
-    jest.clearAllMocks()
-  })
+    jest.clearAllMocks();
+  });
 
-  it('should create compression middleware with defaults', () => {
-    const result = compressionFactory.create()
+  it("should create compression middleware with defaults", () => {
+    const result = compressionFactory.create();
 
-    expect(compression).toHaveBeenCalledWith({})
-    expect(result).toBe('compression-middleware')
-  })
+    expect(compression).toHaveBeenCalledWith({});
+    expect(result).toBe("compression-middleware");
+  });
 
-  it('should pass custom options', () => {
-    compressionFactory.create({ level: 6 })
+  it("should pass custom options", () => {
+    compressionFactory.create({ level: 6 });
 
-    expect(compression).toHaveBeenCalledWith({ level: 6 })
-  })
-})
+    expect(compression).toHaveBeenCalledWith({ level: 6 });
+  });
+});

@@ -1,9 +1,9 @@
-'use strict'
+"use strict";
 
 module.exports = {
-  displayName: 'logger',
-  testEnvironment: 'node',
+  displayName: "logger",
+  testEnvironment: "node",
   rootDir: __dirname,
-  testMatch: ['<rootDir>/__tests__/**/*.test.js'],
-  coveragePathIgnorePatterns: ['/node_modules/']
-}
+  testMatch: ["<rootDir>/__tests__/**/*.test.js"],
+  coveragePathIgnorePatterns: ["/node_modules/"],
+};

@@ -2,8 +2,28 @@
   "name": "@bnstudios/express",
   "version": "1.0.0",
   "description": "Express.js wrapper with sane middleware defaults",
-  "main": "index.js",
+  "keywords": [
+    "express",
+    "middleware",
+    "server"
+  ],
+  "homepage": "https://github.com/BottleneckStudio/bnstudios/tree/main/packages/express#readme",
+  "bugs": {
+    "url": "https://github.com/BottleneckStudio/bnstudios/issues"
+  },
+  "license": "MIT",
+  "author": "BottleneckStudio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BottleneckStudio/bnstudios.git",
+    "directory": "packages/express"
+  },
+  "files": [
+    "index.js",
+    "lib/"
+  ],
   "type": "commonjs",
+  "main": "index.js",
   "exports": {
     ".": {
       "require": "./index.js",
@@ -11,12 +31,9 @@
     },
     "./package.json": "./package.json"
   },
-  "files": [
-    "index.js",
-    "lib/"
-  ],
-  "engines": {
-    "node": ">=20"
+  "scripts": {
+    "test": "jest --config jest.config.js",
+    "prepublishOnly": "npm test"
   },
   "dependencies": {
     "@bnstudios/logger": "^1.0.0",
@@ -29,24 +46,7 @@
   "peerDependencies": {
     "express": "^5.2.1"
   },
-  "scripts": {
-    "test": "jest --config jest.config.js",
-    "prepublishOnly": "npm test"
-  },
-  "keywords": [
-    "express",
-    "middleware",
-    "server"
-  ],
-  "author": "BottleneckStudio",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BottleneckStudio/bnstudios.git",
-    "directory": "packages/express"
-  },
-  "bugs": {
-    "url": "https://github.com/BottleneckStudio/bnstudios/issues"
-  },
-  "homepage": "https://github.com/BottleneckStudio/bnstudios/tree/main/packages/express#readme"
+  "engines": {
+    "node": ">=20"
+  }
 }
